@@ -1,7 +1,7 @@
 require "forecast_io"
 
 # configure the Dark Sky API with your API key
-ForecastIO.api_key = "YOUR-API-KEY"
+ForecastIO.api_key = "2032ae6f9df85d324aa2fd4f3020b8dd"
 
 # do the heavy lifting, use Global Hub lat/long
 forecast = ForecastIO.forecast(42.0574063,-87.6722787).to_hash
@@ -9,6 +9,18 @@ forecast = ForecastIO.forecast(42.0574063,-87.6722787).to_hash
 # pp = pretty print
 # use instead of `puts` to make reading a hash a lot easier
 # e.g. `pp forecast`
+#pp forecast
+
+pp "In Chicago, it is currently #{forecast["currently"]["temperature"]} degrees and #{forecast["currently"]["summary"]}"
+
+day = forecast["daily"]["data"].slice(0,7)
+
+a = 1
+
+for x in day
+    pp "#{a} days from now, it will be #{x["temperatureHigh"]} with #{x["summary"]}"
+    a = a + 1
+end
 
 # Example output:
 #
